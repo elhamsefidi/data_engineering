@@ -2,15 +2,14 @@
 
 ## Overview
 
-This project demonstrates **label engineering**: transforming raw business text into structured examples that can be used in machine-learning workflows. The original customer-support scenario has been changed to an **e-commerce order support** scenario.
+This project demonstrates **label engineering**: transforming raw business text into structured examples that can be used in machine-learning workflows. 
 
 The notebook uses a small illustrative dataset with customer messages about order status, order problems, payments, deliveries, returns, and refunds. It also includes order IDs, tracking codes, and product SKUs for sequence-tagging examples.
 
-> **Important:** This is a teaching dataset. Its size and simplicity are not sufficient for production training or reliable performance evaluation.
 
 ## Learning goals
 
-By working through the notebook, you will learn to:
+Notebook will cover:
 
 - standardize raw issue types into consistent class labels;
 - map class labels to numeric IDs;
@@ -25,12 +24,12 @@ The notebook's issue types are mapped to these labels:
 
 | Raw issue type | Engineered label | Meaning |
 |---|---|---|
-| `order_status` | `ORDER_STATUS` | Asking where an order is or requesting its status |
-| `order_problem` | `ORDER_PROBLEM` | A general problem with an order, such as receiving the wrong item |
+| `order_status` | `ORDER_ISSUE` | Asking where an order is or requesting its status |
+| `order_problem` | `PROBLEM_ISSUE` | A general problem with an order, such as receiving the wrong item |
 | `payment` | `PAYMENT_ISSUE` | A payment failure or duplicate charge |
 | `delivery` | `DELIVERY_ISSUE` | A delayed, missing, or incorrectly tracked package |
-| `return` | `RETURN_REQUEST` | Asking to return an item |
-| `refund` | `REFUND_REQUEST` | Asking about a refund |
+| `return` | `RETURN_ISSUE` | Asking to return an item |
+| `refund` | `REFUND_ISSUET` | Asking about a refund |
 
 These categories are examples for the exercise. In a real project, the label definitions should be documented, mutually understandable, and applied consistently by the people or processes labeling the data.
 
@@ -91,24 +90,6 @@ When the notebook is run, it writes three files to the notebook's current workin
 
 JSONL means **JSON Lines**: each line is a separate JSON object, which is useful for processing records one at a time.
 
-## How to run
-
-1. Open `4_Label-Engineering-Ecommerce.ipynb` in Jupyter Notebook, JupyterLab, or a compatible notebook environment.
-2. Ensure Python and pandas are installed.
-3. Run the notebook cells from top to bottom.
-4. Inspect the printed DataFrames and token-level tags.
-5. Confirm the three output files appear in the notebook's working directory.
-
-## Practical checks before using real data
-
-- Review class definitions and look for ambiguous or overlapping labels.
-- Check for missing or unexpected raw issue types before mapping labels.
-- Inspect class balance; a tiny example may not reflect real-world frequencies.
-- Keep train, validation, and test splits separate when evaluating a model.
-- Avoid leaking private customer details into training data; apply appropriate data minimization and anonymization.
-- Validate entity boundaries and tags, especially for multi-token entities and sentences with multiple entities.
-- Save the label-to-ID mapping and version it alongside the dataset and model.
-- Evaluate outputs on held-out data before considering deployment.
 
 ## Key takeaway
 
